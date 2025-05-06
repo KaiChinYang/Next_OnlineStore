@@ -1,14 +1,20 @@
 import Image from "next/image";
 import CartButton from "@/app/components/CartButton";
 import Link from "next/link";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export default async function ProductDetail({ params }) {
   //     // asynchronous access of `params.id`.
   //   const { id } = await params
   //   return <h1>Product ID: {id}</h1>;
   const { id } = await params;
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
-  const product = await res.json();
+  // const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  // const product = await res.json();
+  const product = await prisma.product.findUnique({
+    where: { id: Number(id) },
+  });
 
   if (product.error) {
     return <h1>Product not found</h1>;
