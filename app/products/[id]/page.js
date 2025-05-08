@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; //讓 Next.js 告訴 Vercel：「這個頁面是動態的，每次都重新 render！」
+
 import Image from "next/image";
 import CartButton from "@/app/components/CartButton";
 import Link from "next/link";
