@@ -17,7 +17,8 @@ export default function UploadImage({ value, onUploadComplete }) {
         method: "POST",
         body: formData,
       });
-
+      if (!res.ok) throw new Error("Upload failed");
+      
       const data = await res.json();
       console.log(`data: ${data}`);
       onUploadComplete(data.imageUrl); // 傳回圖片網址給父元件
