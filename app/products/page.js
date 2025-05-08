@@ -11,7 +11,7 @@ export default async function Products() {
   // const products = await res.json();
 
   //透過Prisma取得DB資料
-  const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany({ orderBy: { id: "asc" } });
 
   return (
     <div>
